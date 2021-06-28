@@ -16,7 +16,7 @@ vector<vector<int> > button({
     vector<int>( { 1, 2, 3, 4, 5 }),
     vector<int>( { 3, 4, 5, 9, 13 })
 });
-void buttonnum(int[16], vector<vector<int>>, int, int);
+void buttonnum(int[16], int, int);
 int main(){
     int c;
     cin >> c;
@@ -29,7 +29,7 @@ int main(){
             clock[j] %=12;
             clock[j] /= 3;
         }
-        buttonnum(clock, button, 0, 0);
+        buttonnum(clock, 0, 0);
         if(mincount>40){
             cout<<-1<<"\n";
         }
@@ -39,7 +39,7 @@ int main(){
     }
 }
 
-void buttonnum(int clock[16], vector<vector<int>> button, int n, int count){    
+void buttonnum(int clock[16], int n, int count){    
     if(n>9){
         for(int i=0; i<16; i++){
             if(!(clock[i] == 0)){
@@ -52,7 +52,7 @@ void buttonnum(int clock[16], vector<vector<int>> button, int n, int count){
         return;
     }
     for(int i=0; i<4; i++){             
-        buttonnum(clock, button, n+1, count+i);
+        buttonnum(clock, n+1, count+i);
         for(int j=0; j<button.at(n).size(); j++){                     
             clock[button[n][j]]++;
             clock[button[n][j]]%=4;                
