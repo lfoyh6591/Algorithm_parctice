@@ -1,10 +1,11 @@
 #include <iostream>
-#include <vector>
+#include <algorithm>
 #include <string.h>
 using namespace std;
+const long long NEGINF = numeric_limits<long long>::min();
 int input1[100];
 int input2[100];
-int memo[100][100];
+int memo[101][101];
 int n, m;
 int jlis(int, int);
 int main(){
@@ -21,58 +22,31 @@ int main(){
         for(int i=0; i<m; i++){
             cin >> input2[i];
         }
-        int maxv = 0;
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                maxv = max(maxv, jlis(i, j));
-            }
-        }
-        cout << maxv << "\n";
+    
+        cout << jlis(-1, -1) << "\n";
     }
 }
 
 int jlis(int index1, int index2){
-    if(memo[index1][index2]!=0){
-            cout << "index1 " << index1 << " index2 " << index2 << " ret " << memo[index1][index2] << "\n";
-
-        return memo[index1][index2];
-    }
-    if((index1 == n-1) && (index2 == m-1)){
-        if(input1[index1]!= input2[index2]){
-            memo[index1][index2] = 2;
-        }
-        else{
-            memo[index1][index2] = 1;
-        }
-            cout << "index1 " << index1 << " index2 " << index2 << " ret " << memo[index1][index2] << "\n";
-
-        return memo[index1][index2];
+    if(memo[index1+1][index2+1]!=0){
+        return memo[index1+1][index2+1];
     }
 
-    int maxv = max(input1[index1], input2[index2]);
-    int minv = min(input1[index1], input2[index2]);
-    int ret = 2;
-    
-    for(int i=index1; i<n; i++){
-        if((input1[i] > minv)){
-            for(int j=index2; j<m; j++){
-                if(input2[j] > minv){
-                    ret = max(ret, jlis(i, j)+1);
-                }
-            }
-        }
-    }
+    int result = 0;
+    long long a = (index1 == -1 ? NEGINF : input1[index1]);
+    long long b = (index2 == -1 ? NEGINF : input2[index2]);
+    long long maxv = max(a, b);
 
-    for(int i=index2; i<m; i++){
-        if((input2[i] > minv)){
-            for(int j=index1; j<n; j++){
-                if(input1[j] > minv){
-                    ret = max(ret, jlis(i, j)+1);
-                }
-            }
+    for(int i=index1+1; i<n; i++){
+        if(input1[i] > maxv){
+            result = max(result, jlis(i, index2) + 1);
         }
     }
-    memo[index1][index2] = ret;
-    cout << "index1 " << index1 << " index2 " << index2 << " ret " << memo[index1][index2] << "\n";
-    return memo[index1][index2];
+    for(int i=index2+1; i<m; i++){
+        if(input2[i] > maxv){
+            result = max(result, jlis(index1, i) + 1);
+        }
+    }
+    memo[index1+1][index2+1] = result;
+    return result;
 }
