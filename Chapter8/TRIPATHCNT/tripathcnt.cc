@@ -26,9 +26,9 @@ int main(){
                 pathmemo[n-1][k] = 1;
             }            
         }
-        triangle.clear();
         trianglesum(0, 0);
         cout << pathmemo[0][0] << "\n";
+        triangle.clear();
     }
 }
 
