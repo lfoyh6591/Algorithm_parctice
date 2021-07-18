@@ -8,7 +8,7 @@ int n, bagw;
 int want[100], weight[100];
 string name[100];
 vector<string> items;
-void unpacking();
+void unpacking(int, int);
 int packing(int, int);
 int main(){
     int C;
@@ -28,7 +28,7 @@ int main(){
             want[i] = x;
         }
         int result = packing(bagw, 0);
-        unpacking();
+        unpacking(bagw, 0);
         cout << packing(bagw, 0) << " " << items.size() << endl;
         int x = items.size();
         for(int i=0; i<x; i++){
@@ -57,7 +57,7 @@ int packing(int w, int item){
     return ret;
 }
 
-
+/*
 void unpacking(){
     int k = bagw;
     for(int i=0; i<n; i++){
@@ -67,5 +67,17 @@ void unpacking(){
                 k -= weight[i];
             }
         }
+    }
+}*/
+void unpacking(int w, int item){
+    if(item == n){
+        return;
+    }
+    if(packing(w, item) == packing(w, item+1)){
+        unpacking(w, item+1);
+    }
+    else{
+        items.push_back(name[item]);
+        unpacking(w-weight[item], item+1);
     }
 }
