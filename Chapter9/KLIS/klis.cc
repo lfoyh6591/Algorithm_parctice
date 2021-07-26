@@ -33,12 +33,12 @@ int main(){
         }
         /*for(int i=0; i<n; i++){
             cout << "memolength " << memolength[i] << " memocount " << memocnt[i] << endl;
-        } for debugging */ 
+        }*/
         int index = 0;
         int minv = 987654321;
         while(lis>0){
         for(int i=0; i<n; i++){
-            if((memolength[i] == lis) && num[i] > minnum){
+            if((memolength[i] == lis) && (num[i] > minnum)){
                 minv = min(minv, num[i]);
                 index = i;
             }
@@ -46,14 +46,15 @@ int main(){
         minnum = minv;
         if(memocnt[index]<k){
             k -= memocnt[index];
-        }
+            minv = 987654321;
+        }        
         else{
-            if(list.empty() || list.back() < num[index]){
-                list.push_back(num[index]);
-                lis--;
-                minv = 987654321;
-            }
+            list.push_back(num[index]);
+            lis--;
+            minv = 987654321;
+            minnum = num[index];
         }
+        //cout << "minnum " << minnum << " minv " << minv << " k " << k << " index " << index << endl;
         }
         for(int i=0; i<list.size(); i++){
             cout << list.at(i) << " ";
