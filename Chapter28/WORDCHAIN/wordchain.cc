@@ -41,14 +41,12 @@ void getcircuit(int start){
 void circuit(){
     for(int i=0; i<26; i++){
         if(outward[i] == inward[i]+1){
-            //cout << "Start1 " << char(i+'a') << endl;
             getcircuit(i);
             return;
         }
     }
     for(int i=0; i<26; i++){
         if(outward[i]>0){
-            //cout << "Start2 " << char(i+'a') << endl;
             getcircuit(i);
             return;
         }
