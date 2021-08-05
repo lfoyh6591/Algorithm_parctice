@@ -29,7 +29,6 @@ void dfs(int here){
                     cctvnum++;
                     cctvcheck[here] = true;
                     cctvcheck[i] = true;
-                    //cout << "cctvinstalled  " << here << endl;
                 }
             }
         }
