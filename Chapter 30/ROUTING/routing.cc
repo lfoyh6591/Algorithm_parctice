@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <vector>
 #include <queue>
+#include <cmath>
 using namespace std;
 #define INF numeric_limits<double>::max()
 int n, m;
@@ -10,9 +11,9 @@ vector<vector<pair<int, double>>> graph;
 
 double dijkstra(){
     vector<double> noise(n, INF);
-    noise[0] = 1;
+    noise[0] = 0;
     priority_queue<pair<double, int>> pq;
-    pq.push(make_pair(-1,0));
+    pq.push(make_pair(0,0));
     while(!pq.empty()){
         double cost = -pq.top().first;
         int here = pq.top().second;
@@ -22,7 +23,7 @@ double dijkstra(){
 
         for(int i=0; i<graph[here].size(); i++){
             int there = graph[here][i].first;
-            double nextnoise = noise[here]*graph[here][i].second;
+            double nextnoise = noise[here]+graph[here][i].second;
 
             if(noise[there] > nextnoise){
                 noise[there] = nextnoise;
@@ -45,9 +46,10 @@ int main(){
             double w;
             cin >> v1 >> v2 >> w;
 
-            graph[v1].push_back(make_pair(v2, w));
-            graph[v2].push_back(make_pair(v1, w));
+            graph[v1].push_back(make_pair(v2, log10(w)));
+            graph[v2].push_back(make_pair(v1, log10(w)));
         }
-        cout << dijkstra() << endl;
+        cout << pow(10, dijkstra()) << endl;
+        graph.clear();
     }
 }
