@@ -33,7 +33,7 @@ double dijkstra(){
     }
     return noise[n-1];
 }
-//소수 간 대소비교 조심하자
+
 int main(){
     int C;    cin >> C;
     cout << fixed;
