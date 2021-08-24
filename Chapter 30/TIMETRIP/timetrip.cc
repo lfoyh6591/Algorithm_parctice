@@ -11,9 +11,9 @@ vector<vector<pair<int, int>>> graph;
 pair<string, string> bellmanFord(){
     vector<int> upper(v, MAX);
     vector<int> lower(v, MIN);
-    vector<bool> fromZero(v, false);
-    vector<bool> toOne(v, false);
-    vector<int> upcycle, lowcycle;
+    vector<bool> fromZero(v, false); // 0에서 갈 수 있는지
+    vector<bool> toOne(v, false);   // 1에 도달할 수 있는지
+    vector<int> upcycle, lowcycle;  // 음수 사이클, 양수 사이클
     toOne[1] = true;
     fromZero[0] = true;
     upper[0] = 0;   lower[0] = 0;
