@@ -23,10 +23,6 @@ int prim(){
         int mintime = get<1>(pq.top().second).first;
         int maxtime = get<1>(pq.top().second).second;
         vector<bool> check1 = get<2>(pq.top().second);
-        /*for(int i=0; i<n; i++){
-            cout << "check1[i] " <<  check1[i] << endl;
-        }
-        cout << "gap " << gap << " here " << here << " mintime " << mintime << " maxtime " << maxtime << endl;*/
         pq.pop();
 
         for(auto it=graph[here].begin(); it!=graph[here].end(); it++){
