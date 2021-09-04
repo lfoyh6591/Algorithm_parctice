@@ -40,12 +40,7 @@ int networkFlow(int source, int sink){
     return totalwin;
 }
 
-bool canWin(int minwin){
-    for(int i=1; i<n; i++){
-        if(winnum[i]>=minwin){
-            return false;
-        }
-    }
+void makeGraph(){
     memset(capacity, 0, sizeof(capacity));
     
     for(int i=0; i<m; i++){
@@ -53,13 +48,19 @@ bool canWin(int minwin){
         capacity[2+i][match[i][0]+2+m]++;
         capacity[2+i][match[i][1]+2+m]++;
     }
-
     for(int i=0; i<n; i++){
         if(i==0){
-            capacity[2+m+i][1] = minwin-winnum[i];
+            capacity[2+m+i][1] = 0;
         }
         else{
-            capacity[2+m+i][1] = minwin-winnum[i]-1;
+            capacity[2+m+i][1] = winnum[0]-winnum[i]-1;
+        }
+    }
+}
+bool canWin(int minwin){
+    for(int i=1; i<n; i++){
+        if(winnum[i]>=minwin){
+            return false;
         }
     }
 
@@ -84,6 +85,7 @@ int main(){
         }
         totalwin = 0;
         memset(flow, 0, sizeof(flow));
+        makeGraph();
         int updated = false;
         for(int i=0; i<=extrawin; i++){
             if(canWin(winnum[0]+i)){
@@ -91,6 +93,9 @@ int main(){
                 cout << winnum[0]+i << endl;
                 updated = true;
                 break;
+            }                    
+            for(int i=0; i<n; i++){
+                capacity[2+m+i][1]++;
             }
         }
         if(!updated){
