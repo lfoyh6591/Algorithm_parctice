@@ -27,7 +27,7 @@ int solution(int n, int s, int a, int b, vector<vector<int>> fares) {
 
         if(d>dist[ahere][bhere])    continue;
         if(ahere==a && bhere==b){
-            continue;
+            return d;
         }
         else if(ahere == a){
             for(int i=0; i<graph[bhere].size(); i++){
