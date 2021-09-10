@@ -50,6 +50,7 @@ int palindrome_length(string reverses){
             }
         }
     }
+    return 0;
 }
 
 int main(){
