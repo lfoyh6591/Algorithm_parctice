@@ -14,7 +14,7 @@ def tree_height(root):
     return 1+max(tree_height(root.left), tree_height(root.right))
 
 class Solution:
-    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+    def isBalanced(self, root) -> bool:
         if root == None:
             return True
             
