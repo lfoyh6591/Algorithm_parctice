@@ -1,5 +1,5 @@
 class Solution:
-    def checkArithmeticSubarrays(self, nums: List[int], l: List[int], r: List[int]) -> List[bool]:
+    def checkArithmeticSubarrays(self, nums: list[int], l: list[int], r: list[int]) -> list[bool]:
         res = []
         for i in range(len(l)):
             if abs(l[i] - r[i]) < 2:

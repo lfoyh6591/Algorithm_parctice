@@ -25,6 +25,6 @@ def sym(mat, target):
     return True
 
 class Solution:
-    def findRotation(self, mat: List[List[int]], target: List[List[int]]) -> bool:
+    def findRotation(self, mat: list[list[int]], target: list[list[int]]) -> bool:
         if clockwise(mat, target) or clockwise(target, mat) or sym(mat, target) or same(mat, target):
             return True
