@@ -1,3 +1,5 @@
+import heapq
+
 class SeatManager:
 
     def __init__(self, n: int):
