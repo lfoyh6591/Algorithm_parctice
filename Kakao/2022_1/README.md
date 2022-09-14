@@ -1,0 +1,1 @@
+https://tech.kakao.com/2022/01/14/2022-kakao-recruitment-round-1/
